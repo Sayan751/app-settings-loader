@@ -1,0 +1,4 @@
+.vscode
+coverage
+.jsbeautifyrc
+.travis.yml
