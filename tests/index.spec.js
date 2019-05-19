@@ -37,7 +37,8 @@ describe("app-settings-loader", () => {
         try {
             loader.call(context, baseConfig);
         } catch (e) {
-            expect(e.message).toEqual(`Unable to parse the file config\\app-settings.malformed.json; app-settings-loader can only be used to load and transform well-formed json files.`);
+            const re = /Unable to parse the file config[\\/]app-settings.malformed.json; app-settings-loader can only be used to load and transform well-formed json files./;
+            expect(re.exec(e.message).length).toBeGreaterThanOrEqual(1);
         }
     });
 
@@ -46,7 +47,8 @@ describe("app-settings-loader", () => {
         try {
             loader.call(context, malformedJson);
         } catch (e) {
-            expect(e.message).toEqual(`Unable to parse the file config/app-settings.malformed.json; app-settings-loader can only be used to load and transform well-formed json files.`);
+            const re = /Unable to parse the file config[\\/]app-settings.malformed.json; app-settings-loader can only be used to load and transform well-formed json files./;
+            expect(re.exec(e.message).length).toBeGreaterThanOrEqual(1);
         }
     });
 });
