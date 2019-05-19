@@ -5,7 +5,7 @@ const validateOptions = require('schema-utils');
 const { sealedMerge } = require("./sealedMerge");
 
 const loaderName = 'app-settings-loader';
-const schema = { env: 'string', mergeOptions: "object" };
+const schema = { env: 'string' };
 const defaultOptions = { env: "development" };
 
 const parseFileContent = (content, filePath) => {
