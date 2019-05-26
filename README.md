@@ -57,7 +57,7 @@ project_root
 Then you use the `appConfig.json` in `main.ts` as follows.
 
 ```typescript
-// with "resolveJsonModule": true, and "esModuleInterop": true in your tsconfig
+// with "resolveJsonModule": true in your tsconfig
 import * as config from "./config/appConfig.json";
 
 // or

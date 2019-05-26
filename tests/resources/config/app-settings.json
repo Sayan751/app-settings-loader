@@ -1,0 +1,5 @@
+{
+    "debug": true,
+    "apiKey": "test",
+    "cacheDuration": 5000
+}

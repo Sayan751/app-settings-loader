@@ -1,18 +1,23 @@
 const mock = require('mock-fs');
+const path = require("path");
+const fsExtra = require("fs-extra");
+const webpack = require('webpack');
 const loader = require("../index");
 
 const basePath = "config/app-settings.json",
     prodPath = "config/app-settings.production.json",
     malformedPath = "config/app-settings.malformed.json",
     baseConfig = `{"debug": true, "apiKey": "test", "cacheDuration": 5000}`,
-    malformedJson = `malformed json`;
+    malformedJson = `malformed json`,
+    entry = "main.ts";
 
 describe("app-settings-loader", () => {
     beforeEach(() => {
         mock({
             [basePath]: baseConfig,
             [prodPath]: `{"debug": false, "apiKey": "123-456"}`,
-            [malformedPath]: malformedJson
+            [malformedPath]: malformedJson,
+            [entry]: `import * as config from "${basePath}";\n\nconsole.log(config);`
         });
     });
 
@@ -52,3 +57,36 @@ describe("app-settings-loader", () => {
         }
     });
 });
+
+describe("app-settings-loader and webpack integration", () => {
+    const outputPath = path.resolve(__dirname, "../dist");
+    afterEach(() => { fsExtra.remove(outputPath); });
+
+    [
+        { text: "TS file with ES6 import", fileName: "es6.ts" },
+        { text: "TS file with require", fileName: "require.ts" },
+        { text: "jS file with ES6 import", fileName: "es6.js" },
+        { text: "jS file with require", fileName: "require.js" },
+    ].map(({ text, fileName }) =>
+        it(`works without error - for ${text}`, async () => {
+            return new Promise((resolve) => {
+                webpack({
+                        entry: path.resolve(__dirname, `./resources/${fileName}`),
+                        output: { path: outputPath },
+                        module: {
+                            rules: [
+                                { test: /\.ts$/, loader: "ts-loader" },
+                                { test: /app-settings\.json$/i, loader: path.resolve(__dirname, "../index"), options: { env: 'production' } }
+                            ]
+                        }
+                    },
+                    (err, stats) => {
+                        expect(!!(err || stats.hasErrors())).toBe(false);
+                        const settings = stats.toJson().chunks[0].modules.find((m) => m.name.includes("app-settings.json"));
+                        expect(!!settings).toBe(true);
+                        expect(JSON.parse(settings.source)).toEqual({ debug: false, apiKey: "123-456", cacheDuration: 5000 });
+                        resolve();
+                    });
+            });
+        }));
+})
