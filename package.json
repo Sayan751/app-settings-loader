@@ -1,6 +1,6 @@
 {
   "name": "app-settings-loader",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A webpack loader to load and customize application settings",
   "main": "index.js",
   "repository": {
@@ -25,6 +25,7 @@
     "fs-extra": "^8.1.0",
     "jest": "^24.9.0",
     "mock-fs": "^4.10.4",
+    "standard-version": "^7.0.1",
     "ts-loader": "^6.2.1",
     "typescript": "^3.7.4",
     "webpack": "^4.41.5"
