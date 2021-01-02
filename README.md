@@ -1,6 +1,6 @@
 # app-settings-loader
 
-[![Build Status](https://travis-ci.com/Sayan751/app-settings-loader.svg?branch=master)](https://travis-ci.com/Sayan751/app-settings-loader)
+![build status](https://github.com/Sayan751/app-settings-loader/workflows/build/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/Sayan751/app-settings-loader/badge.svg?branch=master)](https://coveralls.io/github/Sayan751/app-settings-loader?branch=master)
 
 [![NPM](https://nodei.co/npm/app-settings-loader.png)](https://nodei.co/npm/app-settings-loader/)
