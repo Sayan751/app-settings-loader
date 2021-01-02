@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test:dev": "jest --no-cache --runInBand --detectOpenHandles",
-    "test": "jest --no-cache --runInBand --detectOpenHandles --coverageReporters=text-lcov | coveralls"
+    "test": "jest --no-cache --runInBand --detectOpenHandles --coverageReporters=text-lcov"
   },
   "keywords": [
     "webpack",
