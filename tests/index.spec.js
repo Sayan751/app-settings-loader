@@ -71,18 +71,19 @@ describe("app-settings-loader and webpack integration", () => {
         it(`works without error - for ${text}`, async () => {
             return new Promise((resolve) => {
                 webpack({
-                        entry: path.resolve(__dirname, `./resources/${fileName}`),
-                        output: { path: outputPath },
-                        module: {
-                            rules: [
-                                { test: /\.ts$/, loader: "ts-loader" },
-                                { test: /app-settings\.json$/i, loader: path.resolve(__dirname, "../index"), options: { env: 'production' } }
-                            ]
-                        }
-                    },
+                    entry: path.resolve(__dirname, `./resources/${fileName}`),
+                    output: { path: outputPath },
+                    module: {
+                        rules: [
+                            { test: /\.ts$/, loader: "ts-loader" },
+                            { test: /app-settings\.json$/i, loader: path.resolve(__dirname, "../index"), options: { env: 'production' } }
+                        ]
+                    }
+                },
                     (err, stats) => {
                         expect(!!(err || stats.hasErrors())).toBe(false);
-                        const settings = stats.toJson().chunks[0].modules.find((m) => m.name.includes("app-settings.json"));
+                        const statsSource = stats.toJson({ source: true });
+                        const settings = statsSource.modules.find((m) => m.name.includes("app-settings.json"));
                         expect(!!settings).toBe(true);
                         expect(JSON.parse(settings.source)).toEqual({ debug: false, apiKey: "123-456", cacheDuration: 5000 });
                         resolve();

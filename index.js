@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const { getOptions } = require('loader-utils');
-const validateOptions = require('schema-utils');
+const { validate } = require('schema-utils');
 const { sealedMerge } = require("./sealedMerge");
 
 const loaderName = 'app-settings-loader';
@@ -16,9 +16,9 @@ const parseFileContent = (content, filePath) => {
     }
 }
 
-module.exports = function(source) {
+module.exports = function (source) {
     const options = Object.assign(defaultOptions, getOptions(this));
-    validateOptions(schema, options, loaderName);
+    validate(schema, options, loaderName);
 
     const ext = path.extname(this.resourcePath);
     const envFile = path.join(path.dirname(this.resourcePath), `${path.basename(this.resourcePath, ext)}.${options.env}${ext}`);
