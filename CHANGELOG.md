@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.3](https://github.com/Sayan751/app-settings-loader/compare/v2.0.1...v2.0.3) (2021-05-08)
+
+Fixed the reported handlebars vulnerabilities ([e75ea50](https://github.com/Sayan751/app-settings-loader/commit/e75ea507ba2436ca783f723d232fe43c53e32961))
+
 ### [2.0.2](https://github.com/Sayan751/app-settings-loader/compare/v2.0.1...v2.0.2) (2021-05-02)
 
 Fixed the reported security vulnerabilities ([86a9702](https://github.com/Sayan751/app-settings-loader/commit/86a970271f21778d3875cebcfb074fa7691833af))
