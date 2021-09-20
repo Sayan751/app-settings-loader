@@ -8,7 +8,7 @@
     "url": "https://github.com/Sayan751/app-settings-loader.git"
   },
   "scripts": {
-    "test:dev": "jest --no-cache --runInBand --detectOpenHandles",
+    "test:dev": "jest --no-cache --runInBand",
     "test": "npm run test:dev -- --coverageReporters=lcov"
   },
   "keywords": [
@@ -19,20 +19,20 @@
   "author": "Sayan Pal",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^26.0.23",
-    "@types/node": "^15.0.2",
-    "coveralls": "^3.1.0",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.9.4",
+    "coveralls": "^3.1.1",
     "fs-extra": "^10.0.0",
-    "jest": "^26.6.3",
-    "mock-fs": "^4.14.0",
-    "standard-version": "^9.3.0",
-    "ts-loader": "^9.1.2",
-    "typescript": "^4.2.4",
-    "webpack": "^5.36.2"
+    "jest": "^27.2.1",
+    "mock-fs": "^5.1.0",
+    "standard-version": "^9.3.1",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.4.3",
+    "webpack": "^5.53.0"
   },
   "dependencies": {
     "loader-utils": "^2.0.0",
-    "schema-utils": "^3.0.0"
+    "schema-utils": "^3.1.1"
   },
   "jest": {
     "collectCoverage": true,
