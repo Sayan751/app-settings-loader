@@ -24,21 +24,21 @@ describe("app-settings-loader", () => {
     afterEach(() => { mock.restore(); });
 
     it("merges two settings file depending on the environment", () => {
-        const context = { resourcePath: basePath, query: { env: "production" } }
+        const context = { resourcePath: basePath, getOptions() { return { env: "production" }; } }
         const expected = JSON.parse(`{"debug": false, "apiKey": "123-456", "cacheDuration": 5000}`);
         const actual = JSON.parse(loader.call(context, baseConfig));
         expect(actual).toEqual(expected);
     });
 
     it("returns base settings if the environment file does not exist", () => {
-        const context = { resourcePath: basePath, query: { env: "test" } }
+        const context = { resourcePath: basePath, getOptions() { return { env: "test" }; } }
         const expected = JSON.parse(`{"debug": true, "apiKey": "test", "cacheDuration": 5000}`);
         const actual = JSON.parse(loader.call(context, baseConfig));
         expect(actual).toEqual(expected);
     });
 
     it("throws error if the env json is malformed", () => {
-        const context = { resourcePath: basePath, query: { env: "malformed" } }
+        const context = { resourcePath: basePath, getOptions() { return { env: "malformed" }; } }
         try {
             loader.call(context, baseConfig);
         } catch (e) {
@@ -48,7 +48,7 @@ describe("app-settings-loader", () => {
     });
 
     it("throws error if the base json is malformed", () => {
-        const context = { resourcePath: malformedPath }
+        const context = { resourcePath: malformedPath, getOptions() { return {}; } }
         try {
             loader.call(context, malformedJson);
         } catch (e) {
