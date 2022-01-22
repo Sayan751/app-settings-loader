@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.0.4](https://github.com/Sayan751/app-settings-loader/compare/v2.0.3...v2.0.4) (2022-01-22)
+
+chore: deps update for webpack5 and shelljs vuln fix ([699096f](https://github.com/Sayan751/app-settings-loader/commit/699096f317fbb095108688a6171887f037480344))
+
 ### [2.0.3](https://github.com/Sayan751/app-settings-loader/compare/v2.0.1...v2.0.3) (2021-05-08)
 
 Fixed the reported handlebars vulnerabilities ([e75ea50](https://github.com/Sayan751/app-settings-loader/commit/e75ea507ba2436ca783f723d232fe43c53e32961))
