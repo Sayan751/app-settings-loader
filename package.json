@@ -1,6 +1,6 @@
 {
   "name": "app-settings-loader",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "A webpack loader to load and customize application settings",
   "main": "index.js",
   "repository": {
