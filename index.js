@@ -23,10 +23,26 @@ module.exports = function (source) {
     const envFile = path.join(path.dirname(this.resourcePath), `${path.basename(this.resourcePath, ext)}.${options.env}${ext}`);
     let envConfig = {};
 
-    if (fs.existsSync(envFile)) {
-        envConfig = parseFileContent(fs.readFileSync(envFile), envFile);
-    }
-    const sourceConfig = parseFileContent(source, this.resourcePath);
+    const callback = this.async();
 
-    return JSON.stringify(sealedMerge(sourceConfig, envConfig));
+    fs.promises
+        .access(envFile)
+        .then((exists) => {
+            if (!exists) return;
+            fs.promises
+                .readFile(envFile)
+                .then((content) => {
+                    envConfig = parseFileContent(content, envFile);
+                })
+                .catch((err) => {
+                    callback(err);
+                });
+        })
+        .then(() => {
+            const sourceConfig = parseFileContent(source, this.resourcePath);
+            callback(null, JSON.stringify(sealedMerge(sourceConfig, envConfig)));
+        })
+        .catch((err) => {
+            callback(err);
+        });
 };

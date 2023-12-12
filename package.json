@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test:dev": "jest --no-cache --runInBand",
-    "test": "npm run test:dev -- --coverageReporters=lcov"
+    "test": "npm run test:dev -- --coverageReporters=lcov --bail"
   },
   "keywords": [
     "webpack",
@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "loader-utils": "^3.2.1",
-    "schema-utils": "^4.0.0"
+    "schema-utils": "^4.2.0"
   },
   "jest": {
     "collectCoverage": true,
