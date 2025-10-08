@@ -1,6 +1,6 @@
 {
   "name": "app-settings-loader",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "description": "A webpack loader to load and customize application settings",
   "main": "index.js",
   "repository": {
@@ -19,19 +19,19 @@
   "author": "Sayan Pal",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^29.2.5",
-    "@types/node": "^24.0.3",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.7.0",
     "coveralls": "^3.1.1",
     "fs-extra": "^11.1.0",
-    "jest": "^29.4.2",
+    "jest": "^30.2.0",
     "standard-version": "^9.5.0",
     "ts-loader": "^9.4.2",
-    "typescript": "^5.5.4",
-    "webpack": "^5.75.0"
+    "typescript": "^5.9.3",
+    "webpack": "^5.102.1"
   },
   "dependencies": {
     "loader-utils": "^3.2.1",
-    "schema-utils": "^4.2.0"
+    "schema-utils": "^4.3.3"
   },
   "jest": {
     "collectCoverage": true,
