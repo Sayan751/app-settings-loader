@@ -2,7 +2,7 @@
 
 ![build status](https://github.com/Sayan751/app-settings-loader/workflows/build/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/Sayan751/app-settings-loader/badge.svg?branch=master)](https://coveralls.io/github/Sayan751/app-settings-loader?branch=master)
-[![NPM](https://nodei.co/npm/app-settings-loader.svg?style=flat-square&data=d)](https://nodei.co/npm/app-settings-loader/)
+[![NPM](https://nodei.co/npm/app-settings-loader.svg?style=flat-square&data=d)](https://www.npmjs.com/package/app-settings-loader)
 
 A simple webpack loader to load and customize application settings based on the provided environment.
 
