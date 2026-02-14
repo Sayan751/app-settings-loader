@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Sayan751/app-settings-loader.git"
+    "url": "https://github.com/Sayan751/app-settings-loader"
   },
   "scripts": {
     "test:dev": "jest --no-cache --runInBand",
