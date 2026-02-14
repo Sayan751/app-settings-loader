@@ -42,5 +42,10 @@ jobs:
           echo "auth lines in userconfig (redacted):"
           if [ -f "$(npm config get userconfig)" ]; then sed -E 's/(_authToken=).+/\1***REDACTED***/' "$(npm config get userconfig)" | grep -E '(_authToken|registry|always-auth)' || true; fi
 
+      # Publish to npm when a version tag is pushed
+      # Requires NPM_TOKEN secret to be configured in repository settings
+      # Get your token from https://www.npmjs.com/settings/[username]/tokens
       - run: npm publish --access public --tag latest
         if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
