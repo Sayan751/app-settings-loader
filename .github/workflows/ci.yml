@@ -28,5 +28,19 @@ jobs:
         uses: coverallsapp/github-action@v1.1.2
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Check for unexpected npm auth sources
+        run: |
+          echo "NODE_AUTH_TOKEN set? $([[ -n "${NODE_AUTH_TOKEN}" ]] && echo YES || echo NO)"
+          echo "NPM_TOKEN set? $([[ -n "${NPM_TOKEN}" ]] && echo YES || echo NO)"
+          echo "NPM_CONFIG__AUTHTOKEN set? $([[ -n "${NPM_CONFIG__AUTHTOKEN}" ]] && echo YES || echo NO)"
+          echo "npm userconfig: $(npm config get userconfig)"
+          echo "~/.npmrc exists? $([[ -f ~/.npmrc ]] && echo YES || echo NO)"
+          echo "userconfig exists? $([[ -f "$(npm config get userconfig)" ]] && echo YES || echo NO)"
+          echo "auth lines in ~/.npmrc (redacted):"
+          if [ -f ~/.npmrc ]; then sed -E 's/(_authToken=).+/\1***REDACTED***/' ~/.npmrc | grep -E '(_authToken|registry|always-auth)' || true; fi
+          echo "auth lines in userconfig (redacted):"
+          if [ -f "$(npm config get userconfig)" ]; then sed -E 's/(_authToken=).+/\1***REDACTED***/' "$(npm config get userconfig)" | grep -E '(_authToken|registry|always-auth)' || true; fi
+
       - run: npm publish --access public --tag latest
         if: startsWith(github.ref, 'refs/tags/v')
