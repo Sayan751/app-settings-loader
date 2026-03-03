@@ -27,5 +27,7 @@ jobs:
         uses: coverallsapp/github-action@v2.3.6
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
+          file: coverage/lcov.info
+          fail-on-error: false
       - run: npm publish --access public
         if: startsWith(github.ref, 'refs/tags/v')
