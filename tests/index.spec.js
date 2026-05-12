@@ -1,6 +1,7 @@
 const path = require("path");
 const fsExtra = require("fs-extra");
 const webpack = require('webpack');
+const os = require('os')
 
 describe("app-settings-loader and webpack integration", () => {
     const outputPath = path.resolve(__dirname, "../dist");
@@ -13,11 +14,15 @@ describe("app-settings-loader and webpack integration", () => {
      * @param {unknown} content 
      */
     function assertBuild(err, stats, expectedFileName, content) {
-        expect(!!(err || stats.hasErrors())).toBe(false);
-        const statsSource = stats.toJson({ source: true });
-        const settings = statsSource.modules.find((m) => m.name.includes(expectedFileName));
-        expect(!!settings).toBe(true);
-        expect(JSON.parse(settings.source)).toEqual(content);
+        try {
+            expect(!!(err || stats.hasErrors())).toBe(false);
+            const statsSource = stats.toJson({ source: true });
+            const settings = statsSource.modules.find((m) => m.name.includes(expectedFileName));
+            expect(!!settings).toBe(true);
+            expect(JSON.parse(settings.source)).toEqual(content);
+        } catch(e) {
+            throw new Error(`error: ${err}${os.EOL}stats: ${stats.toString()}${os.EOL}assertion error: ${e}`);
+        }
     }
 
     /**
