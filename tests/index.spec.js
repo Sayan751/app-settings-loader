@@ -36,7 +36,7 @@ describe("app-settings-loader and webpack integration", () => {
             output: { path: outputPath },
             module: {
                 rules: [
-                    { test: /\.ts$/, loader: "ts-loader" },
+                    { test: /\.ts$/, loader: "esbuild-loader", options: { loader: "ts", target: "es2015" } },
                     { test: settingsFilePattern, loader: path.resolve(__dirname, "../index"), options: { env } }
                 ]
             }

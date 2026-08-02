@@ -21,11 +21,11 @@
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/node": "^26.0.0",
+    "esbuild-loader": "^4.5.0",
     "fs-extra": "^11.1.0",
     "jest": "^30.4.2",
     "standard-version": "^9.5.0",
-    "ts-loader": "^9.4.2",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "webpack": "^5.105.2"
   },
   "dependencies": {
